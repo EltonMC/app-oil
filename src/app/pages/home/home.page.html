@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Simulador</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Área</ion-label>
+          <ion-select [(ngModel)]="pocoName" ok-text="Ok" cancel-text="Sair">
+            <ion-select-option *ngFor="let item of area" value="{{ item.name }}">{{ item.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of area">
+      <ion-col size="12" *ngIf="pocoName === item.name">
+        <ion-item>
+          <ion-label>Poço</ion-label>
+          <ion-select [(ngModel)]="pocoSelect" ok-text="Ok" cancel-text="Sair" (ionChange)="showGraph()">
+            <ion-select-option *ngFor="let poco of item.poco" value="{{ poco }}">{{ poco }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="pocoSelect">
+      <ion-col size="12" >
+        <strong> Poço operando normalmente ? </strong>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="pocoSelect">
+      <ion-col size="12">
+        <ion-button color="primary" href="/form/{{pocoSelect}}">Sim</ion-button>
+        <ion-button color="light" href="/form-err">Não</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="showSobFlag" >
+      <ion-col>
+        <strong>Sintomas: </strong> 
+        <p> Sobrecorrente </p>
+      </ion-col>
+      <ion-col>
+        <strong> Possíveis Causas: </strong>
+        <p>Eixo Travado </p>
+        <p> Curto-circuito (motor ou cabo) </p>
+        <p> Variação na tensão de alimentação </p>
+        <p> Motor contaminado </p>
+        <p> Aumento da viscosidade </p>
+        <p> Aumento do BSW </p>
+        <p> Sujeira (areia) </p>
+      </ion-col>
+    </ion-row>
+    <ion-row  *ngIf="showSubFlag">
+      <ion-col>
+        <strong>Sintomas: </strong> 
+        <p> Subcorrente </p>
+      </ion-col>
+      <ion-col>
+        <strong> Possíveis Causas: </strong>
+        <p> Eixo partido </p>
+        <p> Fase invertida </p>
+        <p> Válvula fechada </p>
+        <p> Gás </p>
+        <p> Formação não alimenta, baixo IP </p>
+        <p> Obstrução na bomba </p>
+        <p> Obstrução na cauda </p>
+        <p> Furo na coluna </p>
+        <p> Recirculação </p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <div *ngIf="showGraphFlag" class="row">
+          <div class="col-md-6">
+            <div style="display: block;">
+              <canvas baseChart width="300" height="100" [(datasets)]="lineChartData" [(labels)]="lineChartLabels"
+                [(options)]="lineChartOptions" [(colors)]="lineChartColors" [(legend)]="lineChartLegend" [(chartType)]="lineChartType"
+                (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </div>
+          </div>
+          <ion-button color="warning" (click)="clearGraph()">Limpar</ion-button>
+        </div>
+      </ion-col>
+
+
+    </ion-row>
+
+  </ion-grid>
+
+
+</ion-content>

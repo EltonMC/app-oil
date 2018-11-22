@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Formulário</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-list [formGroup]="form">
+    <!-- <ion-item>
+      <ion-label>Ocorreram Paradas ?</ion-label>
+      <ion-select formControlName="err" ok-text="Ok" cancel-text="Sair" (ionChange)="showGraph()">
+        <ion-select-option value="true"> Sim </ion-select-option>
+        <ion-select-option value="false"> Não </ion-select-option>
+      </ion-select>
+    </ion-item> -->
+    <ion-item>
+      <ion-label>Data de Inicio</ion-label>
+      <ion-datetime formControlName="dateStart" display-format="DD/MM/YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Data do Fim</ion-label>
+      <ion-datetime formControlName="dateEnd" display-format="DD/MM/YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Área da Falha</ion-label>
+
+      <ion-select formControlName="area" ok-text="Ok" cancel-text="Sair">
+        <ion-select-option *ngFor="let item of options" value="{{ item.conduta }}">{{ item.area }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label position="floating">Possíveis Causas</ion-label>
+      <ion-input type="number" formControlName="causa"></ion-input>
+    </ion-item> -->
+    <ion-item *ngIf="form.value.area">
+      <ion-label> <strong> Conduta a ser aplicada </strong></ion-label>
+      <ion-label> {{ form.value.area }} </ion-label>
+    </ion-item>
+   
+  </ion-list>
+  
+  <!-- <ion-button color="success" 
+              (click)="onSubmit(form.value)"
+              [disabled]="!form.valid">Salvar</ion-button> -->
+  
+  </ion-content>
+  

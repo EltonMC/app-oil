@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Formulário</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+<ion-list [formGroup]="form">
+  <ion-item>
+    <ion-label position="floating">Corrente</ion-label>
+    <ion-input type="number" formControlName="corrente"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Tensão</ion-label>
+    <ion-input type="number" formControlName="tensao"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Frequencia</ion-label>
+    <ion-input type="number" formControlName="freq"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Carga</ion-label>
+    <ion-input type="number" formControlName="carga"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Pressão na Cabeça</ion-label>
+    <ion-input type="number" formControlName="pressao_cabeca"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Pressão no Intake</ion-label>
+    <ion-input type="number" formControlName="pressao_intake"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Temperatura do Motor</ion-label>
+    <ion-input type="number" formControlName="temperatura_motor"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Resistência a Isolação</ion-label>
+    <ion-input type="number" formControlName="resistencia_isolacao"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Resistência a Continuidade</ion-label>
+    <ion-input type="number" formControlName="resistencia_continuidade"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Data</ion-label>
+    <ion-datetime formControlName="date" display-format="DD/MM/YYYY"></ion-datetime>
+  </ion-item>
+</ion-list>
+
+<ion-button color="success" 
+            (click)="onSubmit(form.value)"
+            [disabled]="!form.valid">Inserir Dados</ion-button>
+
+</ion-content>
